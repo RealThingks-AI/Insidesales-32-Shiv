@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense, useMemo } from 'react';
+import { useState, lazy, Suspense, useMemo, useEffect } from 'react';
 import { ChevronDown, Users, Lock, GitBranch, Plug, Database, Shield, Activity, FileText, Megaphone, CheckSquare, Palette, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -133,10 +133,28 @@ const SectionLoadingSkeleton = () => (
   </div>
 );
 
-const AdminSettingsPage = () => {
+interface AdminSettingsPageProps {
+  defaultSection?: string | null;
+}
+
+const AdminSettingsPage = ({ defaultSection }: AdminSettingsPageProps) => {
   const { userRole, loading: roleLoading } = useUserRole();
-  const [openSections, setOpenSections] = useState<string[]>(['users']);
+  const [openSections, setOpenSections] = useState<string[]>(() => {
+    if (defaultSection && adminSections.some(s => s.id === defaultSection)) {
+      return [defaultSection];
+    }
+    return ['users'];
+  });
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Auto-expand section when defaultSection changes
+  useEffect(() => {
+    if (defaultSection && adminSections.some(s => s.id === defaultSection)) {
+      setOpenSections(prev => 
+        prev.includes(defaultSection) ? prev : [defaultSection]
+      );
+    }
+  }, [defaultSection]);
 
   const isAdmin = userRole === 'admin';
 

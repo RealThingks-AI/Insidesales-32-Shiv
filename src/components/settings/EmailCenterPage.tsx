@@ -1,12 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FileText, History, BarChart3 } from 'lucide-react';
 import EmailTemplatesSettings from '@/components/settings/EmailTemplatesSettings';
 import EmailHistorySettings from '@/components/settings/EmailHistorySettings';
 import { EmailAnalyticsDashboard } from '@/components/settings/EmailAnalyticsDashboard';
 
-const EmailCenterPage = () => {
-  const [activeTab, setActiveTab] = useState('templates');
+interface EmailCenterPageProps {
+  defaultTab?: string | null;
+}
+
+const validTabs = ['templates', 'history', 'analytics'];
+
+const EmailCenterPage = ({ defaultTab }: EmailCenterPageProps) => {
+  const [activeTab, setActiveTab] = useState(() => {
+    if (defaultTab && validTabs.includes(defaultTab)) {
+      return defaultTab;
+    }
+    return 'templates';
+  });
+
+  useEffect(() => {
+    if (defaultTab && validTabs.includes(defaultTab)) {
+      setActiveTab(defaultTab);
+    }
+  }, [defaultTab]);
 
   return (
     <div className="space-y-6 max-w-6xl">
