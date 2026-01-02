@@ -59,7 +59,7 @@ export const DealCard = ({
                 size="sm"
                 variant="ghost"
                 onClick={handleMoveToDropped}
-                className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 h-6 w-6 bg-orange-100 hover:bg-orange-200 text-orange-600"
+                className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 h-6 w-6 bg-amber-50 hover:bg-amber-100 text-amber-700"
                 title="Move to Dropped"
               >
                 <XCircle className="w-3 h-3" />

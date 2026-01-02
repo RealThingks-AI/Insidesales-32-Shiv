@@ -497,8 +497,8 @@ export const ContactTable = forwardRef<ContactTableRef, ContactTableProps>(({
   // Generate consistent color from name
   const getAvatarColor = (name: string) => {
     const colors = [
-      'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-orange-500',
-      'bg-pink-500', 'bg-teal-500', 'bg-indigo-500', 'bg-amber-500'
+      'bg-slate-500', 'bg-slate-600', 'bg-zinc-500', 'bg-gray-500',
+      'bg-stone-500', 'bg-neutral-500', 'bg-slate-700', 'bg-zinc-600'
     ];
     const index = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % colors.length;
     return colors[index];
