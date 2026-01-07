@@ -354,9 +354,9 @@ export const ContactDetailModal = ({
             </TabsContent>
 
             <TabsContent value="linked" className="mt-4">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Linked Account */}
-                <Card>
+                <Card className="h-full">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-base flex items-center gap-2">
                       <Building2 className="h-4 w-4" />
@@ -383,7 +383,7 @@ export const ContactDetailModal = ({
                 </Card>
 
                 {/* Linked Meetings */}
-                <Card>
+                <Card className="h-full">
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-base flex items-center gap-2">
